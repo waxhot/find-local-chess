@@ -1,0 +1,133 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Get all events and sort by date
+const allEvents = await getCollection('events');
+const upcomingEvents = allEvents
+  .filter(event => event.data.date >= new Date())
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
+  .slice(0, 5);
+---
+
+<BaseLayout title="Find Local Chess - Discover Chess Events Near You">
+  <h1>Welcome to Find Local Chess</h1>
+  
+  <p>
+    Discover local chess events, tournaments, and meetups in your area. 
+    Join our community and improve your game!
+  </p>
+
+  <section>
+    <h2>Upcoming Events</h2>
+    
+    {upcomingEvents.length > 0 ? (
+      <div class="events-grid">
+        {upcomingEvents.map((event) => (
+          <article class="event-card">
+            <h3>
+              <a href={`/events/${event.slug}`}>{event.data.title}</a>
+            </h3>
+            <div class="event-meta">
+              <p><strong>📅 Date:</strong> {event.data.date.toLocaleDateString()}</p>
+              <p><strong>🕐 Time:</strong> {event.data.time}</p>
+              <p><strong>📍 Location:</strong> {event.data.location}</p>
+              <p><strong>👥 Organizer:</strong> {event.data.organizer}</p>
+            </div>
+            <p>{event.data.description}</p>
+            {event.data.entryFee && (
+              <p><strong>💰 Entry Fee:</strong> {event.data.entryFee}</p>
+            )}
+            <div class="event-tags">
+              {event.data.tags.map(tag => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p>No upcoming events scheduled. Check back soon!</p>
+    )}
+    
+    <p>
+      <a href="/events">View all events →</a>
+    </p>
+  </section>
+
+  <section>
+    <h2>Get Involved</h2>
+    <p>
+      This is a community-driven website. Help us keep it up to date by contributing 
+      event information through GitHub pull requests.
+    </p>
+    <p>
+      <a href="/contribute">Learn how to contribute →</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .event-card {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s;
+  }
+  
+  .event-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+  
+  .event-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .event-card h3 a {
+    text-decoration: none;
+    color: #2c3e50;
+  }
+  
+  .event-card h3 a:hover {
+    text-decoration: underline;
+  }
+  
+  .event-meta {
+    background: white;
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+  }
+  
+  .event-meta p {
+    margin: 0.5rem 0;
+  }
+  
+  .event-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .tag {
+    background: #007bff;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+  }
+  
+  section {
+    margin: 3rem 0;
+  }
+</style>

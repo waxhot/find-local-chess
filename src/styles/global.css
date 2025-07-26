@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&family=Press+Start+2P&display=swap');
+
+:root {
+  --radius: 0rem;
+  --primary: oklch(0.5 0.2 260);
+  --primary-foreground: oklch(0.9 0.02 260);
+  --background: oklch(0.85 0.1 220);
+  --foreground: oklch(0.1 0.1 280);
+  --card: oklch(0.85 0.1 220);
+  --card-foreground: oklch(0.1 0.1 280);
+  --popover: oklch(0.85 0.1 220);
+  --popover-foreground: oklch(0.9 0.02 260);
+  --secondary: oklch(0.5 0.2 260);
+  --secondary-foreground: oklch(0.9 0.02 260);
+  --muted: oklch(0.1 0.1 280);
+  --muted-foreground: oklch(0.5 0.2 280);
+  --accent: oklch(0.5 0.2 260);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.6 0.2 20);
+  --border: oklch(0.5 0.2 260);
+  --input: oklch(0.5 0.2 260);
+  --ring: oklch(0.5 0.2 260);
+  --chart-1: oklch(0.5 0.2 260);
+  --chart-2: oklch(0.3 0.2 260);
+  --chart-3: oklch(0.7 0.1 250);
+  --chart-4: oklch(0.6 0.15 250);
+  --chart-5: oklch(0.4 0.15 250);
+  --sidebar: oklch(0.2 0 0);
+  --sidebar-foreground: oklch(0.1 0.1 280);
+  --sidebar-primary: oklch(0.4 0.15 250);
+  --sidebar-primary-foreground: oklch(0.1 0.1 280);
+  --sidebar-accent: oklch(0.5 0.2 280);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.3 0 0);
+  --sidebar-ring: oklch(0.4 0.15 250);
+  --font-heading: 'Press Start 2P', cursive;
+  --font-body: 'Pixelify Sans', sans-serif;
+}
+
+.dark {
+  --primary: oklch(0.5 0.2 260);
+    --primary-foreground: oklch(0.9 0.02 260);
+    --background: oklch(0.1 0.1 280);
+    --foreground: oklch(0.9 0.02 260);
+    --card: oklch(0.1 0.1 280);
+    --card-foreground: oklch(0.9 0.02 260);
+    --popover: oklch(0.1 0.1 280);
+    --popover-foreground: oklch(0.9 0.02 260);
+    --secondary: oklch(0.5 0.2 260);
+    --secondary-foreground: oklch(0.9 0.02 260);
+    --muted: oklch(0.5 0.2 260);
+    --muted-foreground: oklch(0.85 0.1 220);
+    --accent: oklch(0.5 0.2 260);
+    --accent-foreground: oklch(1 0 0);
+    --destructive: oklch(0.5 0.2 20);
+    --border: oklch(0.5 0.2 260);
+    --input: oklch(0.5 0.2 260);
+    --ring: oklch(0.5 0.2 260);
+    --chart-1: oklch(0.5 0.2 260);
+    --chart-2: oklch(0.3 0.2 260);
+    --chart-3: oklch(0.5 0.2 280);
+    --chart-4: oklch(0.4 0.2 250);
+    --chart-5: oklch(0.4 0.15 250);
+    --sidebar: oklch(0.15 0 0);
+    --sidebar-foreground: oklch(0.9 0.02 260);
+    --sidebar-primary: oklch(0.4 0.15 250);
+    --sidebar-primary-foreground: oklch(0.9 0.02 260);
+    --sidebar-accent: oklch(0.5 0.2 280);
+    --sidebar-accent-foreground: oklch(1 0 0);
+    --sidebar-border: oklch(0.5 0.2 260);
+    --sidebar-ring: oklch(0.4 0.15 250);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.1rem; /* Increased base font size */
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  color: var(--foreground);
+  background: var(--background);
+}
+
+.container {
+  max-width: none; /* Remove max-width */
+  margin: 0; /* Remove auto margins */
+  padding: 0 20px; /* Increased horizontal padding */
+}
+
+header {
+  background: var(--background); /* Use a darker background for the header */
+  color: var(--foreground);
+  padding: 1.5rem 20px; /* Match container horizontal padding */
+  margin-bottom: 2rem;
+  border-bottom: 4px solid var(--primary); /* Thicker, primary color border */
+  box-shadow: 6px 6px 0 var(--secondary); /* More prominent shadow */
+  display: flex;
+  justify-content: space-between; /* Distribute items with space between */
+  align-items: center; /* Vertically align items */
+}
+
+header h1 {
+  font-family: var(--font-heading);
+  color: var(--primary); /* Use primary color for heading */
+  text-shadow: 4px 4px 0 var(--accent); /* More pronounced text shadow */
+  margin: 0; /* Remove default margin */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0 20px; /* Match header horizontal padding */
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--foreground);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--primary);
+  background-color: var(--background);
+  transition: none; /* Remove smooth transitions for 8-bit */
+  box-shadow: 2px 2px 0 var(--secondary);
+}
+
+nav a:hover {
+  background-color: var(--primary);
+  color: var(--background);
+  border-color: var(--accent);
+  transform: none; /* Remove scale on hover */
+  box-shadow: none; /* Remove shadow on hover to simulate press */
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+
+main {
+  background: var(--card);
+  border-radius: 0; /* Sharp corners for 8-bit */
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 
+    4px 4px 0 var(--secondary),
+    8px 8px 0 var(--accent); /* More pronounced pixelated shadow */
+  border: 2px solid var(--border); /* Solid 8-bit border */
+}
+
+h1 {
+  font-family: var(--font-heading);
+  color: var(--foreground);
+  margin-top: 0;
+  text-shadow: 1px 1px 0 var(--accent);
+}
+
+/* General link styling for content */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--foreground);
+  border-top: 2px solid var(--primary);
+  margin-top: 2rem;
+  text-shadow: none;
+}
+
+footer a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: var(--accent);
+}
+
+/* Section Styling */
+section {
+  background: var(--card);
+  border-radius: 0; /* Sharp corners for 8-bit */
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 
+    4px 4px 0 var(--secondary),
+    8px 8px 0 var(--accent); /* More pronounced pixelated shadow */
+  border: 2px solid var(--border); /* Solid 8-bit border */
+}
+
+/* Code Block Styling */
+code {
+  font-family: 'Press Start 2P', cursive; /* Use 8-bit font for code */
+  background-color: var(--background); /* Dark gray for code background */
+  color: var(--accent); /* Yellow for code text */
+  padding: 0.2em 0.4em;
+  border-radius: 0; /* Sharp corners */
+  border: 1px solid var(--secondary); /* Magenta border */
+}
+
+pre {
+  background-color: var(--background); /* Dark gray for pre background */
+  color: var(--accent); /* Yellow for pre text */
+  padding: 1rem;
+  border-radius: 0; /* Sharp corners */
+  overflow-x: auto;
+  border: 1px solid var(--secondary); /* Magenta border */
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Specific elements that use card background and blur */
+header.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme-toggle-container {
+  margin-left: auto;
+}
+
+#theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+#theme-toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: var(--foreground);
+}
+
+#theme-toggle:hover svg {
+  fill: var(--primary);
+}
+
+
+.theme-toggle .moon {
+  display: none;
+}
+
+.dark .theme-toggle .sun {
+  display: none;
+}
+
+.dark .theme-toggle .moon {
+  display: block;
+}
+
+.location-card,
+.event-item,
+.detail-item,
+.event-meta,
+.guideline,
+.content-guidelines {
+}

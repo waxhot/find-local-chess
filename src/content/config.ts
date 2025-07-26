@@ -4,7 +4,7 @@ const eventCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    date: z.date(),
+    day: z.string(),
     time: z.string(),
     location: z.string(),
     address: z.string().optional(),
@@ -16,9 +16,19 @@ const eventCollection = defineCollection({
     timeControl: z.string().optional(),
     rounds: z.number().optional(),
     tags: z.array(z.string()).default([]),
+    locationSlug: z.string(), // New field to link events to locations
+  }),
+});
+
+const locationCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
   }),
 });
 
 export const collections = {
   events: eventCollection,
+  locations: locationCollection,
 };

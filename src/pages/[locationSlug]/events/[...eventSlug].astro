@@ -1,11 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
   const eventEntries = await getCollection('events');
   return eventEntries.map(entry => ({
-    params: { slug: entry.slug },
+    params: { locationSlug: entry.data.locationSlug, eventSlug: entry.slug },
     props: { entry },
   }));
 }
@@ -22,12 +22,7 @@ const { Content } = await entry.render();
       <div class="event-meta">
         <div class="meta-group">
           <h3>📅 When</h3>
-          <p>{entry.data.date.toLocaleDateString('en-US', { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-          })}</p>
+          <p><strong>{entry.data.day}</strong></p>
           <p>{entry.data.time}</p>
         </div>
         
@@ -86,7 +81,7 @@ const { Content } = await entry.render();
     </div>
     
     <footer class="event-footer">
-      <p><a href="/events">← Back to all events</a></p>
+      <p><a href={`/${entry.data.locationSlug}/events`}>← Back to all events</a></p>
     </footer>
   </article>
 </BaseLayout>
@@ -102,7 +97,7 @@ const { Content } = await entry.render();
   }
   
   .event-header h1 {
-    color: #2c3e50;
+    color: var(--text-color);
     margin-bottom: 2rem;
     font-size: 2.5rem;
   }
@@ -111,16 +106,17 @@ const { Content } = await entry.render();
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
-    background: #f8f9fa;
+    background: var(--color-card-bg);
     padding: 2rem;
     border-radius: 8px;
     margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
   }
   
   .meta-group h3 {
     margin-top: 0;
     margin-bottom: 1rem;
-    color: #2c3e50;
+    color: var(--color-text);
     font-size: 1.1rem;
   }
   
@@ -129,7 +125,7 @@ const { Content } = await entry.render();
   }
   
   .meta-group a {
-    color: #007bff;
+    color: var(--color-link);
     text-decoration: none;
   }
   
@@ -145,14 +141,15 @@ const { Content } = await entry.render();
   }
   
   .detail-item {
-    background: white;
+    background: var(--color-card-bg);
     padding: 1rem;
     border-radius: 4px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--color-border);
+    backdrop-filter: blur(10px);
   }
   
   .detail-item a {
-    color: #007bff;
+    color: var(--color-link);
     text-decoration: none;
   }
   
@@ -168,7 +165,7 @@ const { Content } = await entry.render();
   }
   
   .tag {
-    background: #007bff;
+    background: var(--color-link);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -176,16 +173,16 @@ const { Content } = await entry.render();
   }
   
   .event-content {
-    background: white;
+    background: var(--color-card-bg);
     padding: 2rem;
-    border-radius: 8px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--color-border);
     margin-bottom: 2rem;
     line-height: 1.7;
+    backdrop-filter: blur(10px);
   }
   
   .event-content h2 {
-    color: #2c3e50;
+    color: var(--color-text);
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
@@ -199,12 +196,12 @@ const { Content } = await entry.render();
   }
   
   .event-footer {
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid var(--color-border);
     padding-top: 2rem;
   }
   
   .event-footer a {
-    color: #007bff;
+    color: var(--color-link);
     text-decoration: none;
     font-weight: 500;
   }

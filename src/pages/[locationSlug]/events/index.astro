@@ -1,0 +1,155 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const locations = await getCollection('locations');
+  const events = await getCollection('events');
+
+  const staticPaths = [];
+
+  for (const location of locations) {
+    staticPaths.push({
+      params: { locationSlug: location.slug },
+      props: { location },
+    });
+  }
+  return staticPaths;
+}
+
+const { locationSlug } = Astro.params;
+const { location } = Astro.props;
+
+const allEvents = await getCollection('events');
+const locationEvents = allEvents.filter(event => event.data.locationSlug === locationSlug);
+
+// Group events by day of the week
+const eventsByDay = locationEvents.reduce((acc, event) => {
+  const day = event.data.day;
+  if (!acc[day]) {
+    acc[day] = [];
+  }
+  acc[day].push(event);
+  return acc;
+}, {});
+
+const daysOrder = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+];
+
+const sortedDays = Object.keys(eventsByDay).sort(
+  (a, b) => daysOrder.indexOf(a) - daysOrder.indexOf(b)
+);
+---
+
+<BaseLayout title={`${location.data.name} Chess Meetups`}>
+  <h1>Weekly Chess Meetups in {location.data.name}</h1>
+  
+  <p>Find all weekly chess meetups, clubs, and tournaments in {location.data.name}.</p>
+
+  {sortedDays.length > 0 ? (
+    sortedDays.map(day => (
+      <section>
+        <h2>{day}</h2>
+        <div class="events-list">
+          {eventsByDay[day].map((event) => (
+            <article class="event-item">
+              <div class="event-content">
+                <h3>
+                  <a href={`/${locationSlug}/events/${event.slug}`}>{event.data.title}</a>
+                </h3>
+                <div class="event-details">
+                  <span>🕐 {event.data.time}</span>
+                  <span>📍 {event.data.location}</span>
+                  {event.data.entryFee && <span>💰 {event.data.entryFee}</span>}
+                </div>
+                <p>{event.data.description}</p>
+                <div class="event-tags">
+                  {event.data.tags.map(tag => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))
+  ) : (
+    <p>No events found for {location.data.name}. <a href="/contribute">Add the first event!</a></p>
+  )}
+</BaseLayout>
+
+<style>
+  .events-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .event-item {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s;
+    backdrop-filter: blur(10px);
+  }
+  
+  .event-item:hover {
+    box-shadow: 0 4px 8px var(--color-shadow);
+  }
+  
+  .event-content h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .event-content h3 a {
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  
+  .event-content h3 a:hover {
+    text-decoration: underline;
+  }
+  
+  .event-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-text);
+  }
+  
+  .event-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .tag {
+    background: var(--color-link);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+  }
+  
+  section {
+    margin: 3rem 0;
+    background: var(--color-card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+  }
+</style>

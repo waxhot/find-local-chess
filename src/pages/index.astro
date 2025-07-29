@@ -6,38 +6,44 @@ const allLocations = await getCollection('locations');
 ---
 
 <BaseLayout title="Find Local Chess - Discover Chess Events Near You">
-  <section>
-    <h1>Welcome to Find Local Chess</h1>
-    
-    <p>
-      Find local chess events, tournaments, and meetups in your area. 
-      Join our community and improve your game!
-    </p>
-  </section>
+  <wa-card>
+    <section>
+      <h1>Welcome to Find Local Chess</h1>
+      
+      <p>
+        Find local chess events, tournaments, and meetups in your area. 
+        Join our community and improve your game!
+      </p>
+    </section>
+  </wa-card>
 
-  <section>
-    <h2>Explore Locations</h2>
-    <p>Select a location to find chess events near you:</p>
-    <div class="locations-list">
-      {allLocations.map((location) => (
-        <a href={`/${location.slug}`} class="location-card">
-          <h3>{location.data.name}</h3>
-          <p>{location.data.description}</p>
-        </a>
-      ))}
-    </div>
-  </section>
+  <wa-card>
+    <section>
+      <h2>Explore Locations</h2>
+      <p>Select a location to find chess events near you:</p>
+      <div class="locations-list">
+        {allLocations.map((location) => (
+          <a href={`/${location.slug}`} class="location-card">
+            <h3>{location.data.name}</h3>
+            <p>{location.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  </wa-card>
 
-  <section>
-    <h2>Get Involved</h2>
-    <p>
-      This is a community-driven website. Help us keep it up to date by contributing 
-      event information through GitHub pull requests.
-    </p>
-    <p>
-      <a href="/contribute">Learn how to contribute →</a>
-    </p>
-  </section>
+  <wa-card>
+    <section>
+      <h2>Get Involved</h2>
+      <p>
+        This is a community-driven website. Help us keep it up to date by contributing 
+        event information through GitHub pull requests.
+      </p>
+      <p>
+        <a href="/contribute">Learn how to contribute →</a>
+      </p>
+    </section>
+  </wa-card>
 </BaseLayout>
 
 <style>
@@ -49,31 +55,28 @@ const allLocations = await getCollection('locations');
   }
 
   .location-card {
-    background: var(--color-card-bg);
+    display: block;
+    padding: 1.5rem;
     border: 1px solid var(--color-border);
     border-radius: 8px;
-    padding: 1.5rem;
     text-decoration: none;
     color: var(--color-text);
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 8px var(--color-shadow);
-    backdrop-filter: blur(5px);
+    transition: all 0.2s ease-in-out;
   }
 
   .location-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px var(--color-shadow);
+    border-color: var(--color-link);
+    transform: translateY(-2px);
   }
 
   .location-card h3 {
-    font-family: var(--font-heading);
-    color: var(--color-primary);
     margin-top: 0;
     margin-bottom: 0.5rem;
   }
 
   .location-card p {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    margin: 0;
   }
+
+  
 </style>

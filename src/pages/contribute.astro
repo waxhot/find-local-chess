@@ -3,67 +3,74 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Contribute Events - Find Local Chess">
-  <h1>Contribute Events</h1>
-  
-  <p>
-    Help us keep Find Local Chess up to date! This website is community-driven, 
-    and we welcome contributions from anyone who knows about local chess events.
-  </p>
+  <wa-card>
+    <section>
+      <h1>Contribute Events</h1>
+      
+      <p>
+        Help us keep Find Local Chess up to date! This website is community-driven, 
+        and we welcome contributions from anyone who knows about local chess events.
+      </p>
+    </section>
+  </wa-card>
 
-  <section>
-    <h2>How to Add an Event</h2>
-    
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <div class="step-content">
-          <h3>Fork the Repository</h3>
-          <p>
-            Visit our <a href="https://github.com/your-username/chess-website" target="_blank">GitHub repository</a> 
-            and click the "Fork" button to create your own copy.
-          </p>
-        </div>
-      </div>
+  <wa-card>
+    <section>
+      <h2>How to Add an Event</h2>
       
-      <div class="step">
-        <div class="step-number">2</div>
-        <div class="step-content">
-          <h3>Create Your Event File</h3>
-          <p>
-            Navigate to <code>src/content/events/</code> and create a new markdown file 
-            with a descriptive filename (e.g., <code>spring-tournament-2025.md</code>).
-          </p>
-        </div>
+      <div class="steps">
+        <wa-card class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Fork the Repository</h3>
+            <p>
+              Visit our <a href="https://github.com/your-username/chess-website" target="_blank">GitHub repository</a> 
+              and click the "Fork" button to create your own copy.
+            </p>
+          </div>
+        </wa-card>
+        
+        <wa-card class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Create Your Event File</h3>
+            <p>
+              Navigate to <code>src/content/events/</code> and create a new markdown file 
+              with a descriptive filename (e.g., <code>spring-tournament-2025.md</code>).
+            </p>
+          </div>
+        </wa-card>
+        
+        <wa-card class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Use the Template</h3>
+            <p>Copy the template below and fill in your event details.</p>
+          </div>
+        </wa-card>
+        
+        <wa-card class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Submit a Pull Request</h3>
+            <p>
+              Commit your changes and create a pull request. We'll review it and 
+              merge it if everything looks good!
+            </p>
+          </div>
+        </wa-card>
       </div>
-      
-      <div class="step">
-        <div class="step-number">3</div>
-        <div class="step-content">
-          <h3>Use the Template</h3>
-          <p>Copy the template below and fill in your event details.</p>
-        </div>
-      </div>
-      
-      <div class="step">
-        <div class="step-number">4</div>
-        <div class="step-content">
-          <h3>Submit a Pull Request</h3>
-          <p>
-            Commit your changes and create a pull request. We'll review it and 
-            merge it if everything looks good!
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+  </wa-card>
 
-  <section>
-    <h2>Event Template</h2>
-    
-    <p>Copy this template to create a new event file:</p>
-    
-    <div class="code-block">
-      <pre><code>---
+  <wa-card>
+    <section>
+      <h2>Event Template</h2>
+      
+      <p>Copy this template to create a new event file:</p>
+      
+      <div class="code-block">
+        <pre><code>---
 title: "Your Event Title"
 date: 2025-02-15
 time: "7:00 PM"
@@ -93,121 +100,100 @@ Add your detailed event description here using Markdown formatting.
 Include registration details, deadlines, and any requirements.
 
 For questions, contact [organizer name] at [contact info].</code></pre>
-    </div>
-  </section>
-
-  <section>
-    <h2>Field Guidelines</h2>
-    
-    <div class="guidelines">
-      <div class="guideline">
-        <h3>Required Fields</h3>
-        <ul>
-          <li><strong>title:</strong> Clear, descriptive event name</li>
-          <li><strong>date:</strong> Event date in YYYY-MM-DD format</li>
-          <li><strong>time:</strong> Start time (include timezone if needed)</li>
-          <li><strong>location:</strong> Venue name</li>
-          <li><strong>description:</strong> Brief 1-2 sentence summary</li>
-          <li><strong>organizer:</strong> Person or organization running the event</li>
-        </ul>
       </div>
+    </section>
+  </wa-card>
+
+  <wa-card>
+    <section>
+      <h2>Field Guidelines</h2>
       
-      <div class="guideline">
-        <h3>Optional Fields</h3>
-        <ul>
-          <li><strong>address:</strong> Full address for the venue</li>
-          <li><strong>link:</strong> Website URL for more information</li>
-          <li><strong>contact:</strong> Email address for questions</li>
-          <li><strong>entryFee:</strong> Cost to participate</li>
-          <li><strong>timeControl:</strong> Chess time control format</li>
-          <li><strong>rounds:</strong> Number of tournament rounds</li>
-          <li><strong>tags:</strong> Categories like "tournament", "casual", "blitz"</li>
-        </ul>
+      <div class="guidelines">
+        <wa-card class="guideline">
+          <h3>Required Fields</h3>
+          <ul>
+            <li><strong>title:</strong> Clear, descriptive event name</li>
+            <li><strong>date:</strong> Event date in YYYY-MM-DD format</li>
+            <li><strong>time:</strong> Start time (include timezone if needed)</li>
+            <li><strong>location:</strong> Venue name</li>
+            <li><strong>description:</strong> Brief 1-2 sentence summary</li>
+            <li><strong>organizer:</strong> Person or organization running the event</li>
+          </ul>
+        </wa-card>
+        
+        <wa-card class="guideline">
+          <h3>Optional Fields</h3>
+          <ul>
+            <li><strong>address:</strong> Full address for the venue</li>
+            <li><strong>link:</strong> Website URL for more information</li>
+            <li><strong>contact:</strong> Email address for questions</li>
+            <li><strong>entryFee:</strong> Cost to participate</li>
+            <li><strong>timeControl:</strong> Chess time control format</li>
+            <li><strong>rounds:</strong> Number of tournament rounds</li>
+            <li><strong>tags:</strong> Categories like "tournament", "casual", "blitz"</li>
+          </ul>
+        </wa-card>
       </div>
-    </div>
-  </section>
+    </section>
+  </wa-card>
 
-  <section>
-    <h2>Content Guidelines</h2>
-    
-    <div class="content-guidelines">
-      <h3>✅ Please Include:</h3>
-      <ul>
-        <li>Accurate date, time, and location information</li>
-        <li>Clear description of the event format</li>
-        <li>Registration requirements and deadlines</li>
-        <li>Contact information for questions</li>
-        <li>Any special rules or requirements</li>
-      </ul>
+  <wa-card>
+    <section>
+      <h2>Content Guidelines</h2>
       
-      <h3>❌ Please Avoid:</h3>
-      <ul>
-        <li>Promotional language or excessive marketing</li>
-        <li>Events that have already passed</li>
-        <li>Duplicate entries for the same event</li>
-        <li>Personal contact information in public descriptions</li>
-        <li>Misleading or inaccurate information</li>
-      </ul>
-    </div>
-  </section>
+      <wa-card class="content-guidelines">
+        <h3>✅ Please Include:</h3>
+        <ul>
+          <li>Accurate date, time, and location information</li>
+          <li>Clear description of the event format</li>
+          <li>Registration requirements and deadlines</li>
+          <li>Contact information for questions</li>
+          <li>Any special rules or requirements</li>
+        </ul>
+        
+        <h3>❌ Please Avoid:</h3>
+        <ul>
+          <li>Promotional language or excessive marketing</li>
+          <li>Events that have already passed</li>
+          <li>Duplicate entries for the same event</li>
+          <li>Personal contact information in public descriptions</li>
+          <li>Misleading or inaccurate information</li>
+        </ul>
+      </wa-card>
+    </section>
+  </wa-card>
 
-  <section>
-    <h2>Need Help?</h2>
-    
-    <p>
-      If you're not comfortable with GitHub or need assistance, you can:
-    </p>
-    
-    <ul>
-      <li>
-        <a href="https://github.com/your-username/chess-website/issues" target="_blank">
-          Create an issue
-        </a> with your event details and we'll add it for you
-      </li>
-      <li>Email us at [maintainer-email] with your event information</li>
-      <li>Ask for help in our community discussions</li>
-    </ul>
-  </section>
+  <wa-card>
+    <section>
+      <h2>Need Help?</h2>
+      
+      <p>
+        If you're not comfortable with GitHub or need assistance, you can:
+      </p>
+      
+      <ul>
+        <li>
+          <a href="https://github.com/your-username/chess-website/issues" target="_blank">
+            Create an issue
+          </a> with your event details and we'll add it for you
+        </li>
+        <li>Email us at [maintainer-email] with your event information</li>
+        <li>Ask for help in our community discussions</li>
+      </ul>
+    </section>
+  </wa-card>
 </BaseLayout>
 
 <style>
+  wa-card + wa-card {
+    margin-top: 2rem;
+  }
+
   .steps {
     margin: 2rem 0;
   }
   
-  .step {
-    display: flex;
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background: var(--color-card-bg);
-    border-radius: 8px;
-    border-left: 4px solid var(--color-secondary);
-    box-shadow: 0 2px 4px var(--color-shadow);
-  }
   
-  .step-number {
-    background: var(--color-secondary);
-    color: var(--color-background);
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    margin-right: 1.5rem;
-    flex-shrink: 0;
-  }
-  
-  .step-content h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    color: var(--color-text);
-  }
-  
-  .step-content p {
-    margin: 0;
-  }
   
   .code-block {
     background: var(--color-card-bg);
@@ -226,43 +212,9 @@ For questions, contact [organizer name] at [contact info].</code></pre>
     line-height: 1.5;
   }
   
-  .guidelines {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-  }
   
-  .guideline {
-    background: var(--color-card-bg);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--color-border);
-    box-shadow: 0 2px 4px var(--color-shadow);
-  }
   
-  .guideline h3 {
-    margin-top: 0;
-    color: var(--color-text);
-  }
   
-  .guideline ul {
-    margin: 0;
-    padding-left: 1.5rem;
-  }
-  
-  .guideline li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .content-guidelines {
-    background: var(--color-card-bg);
-    padding: 2rem;
-    border-radius: 8px;
-    margin: 2rem 0;
-    border: 1px solid var(--color-border);
-    box-shadow: 0 2px 4px var(--color-shadow);
-  }
   
   .content-guidelines h3 {
     color: var(--color-text);
@@ -286,7 +238,7 @@ For questions, contact [organizer name] at [contact info].</code></pre>
   /* Code styling is now handled by global.css */
   
   section {
-    margin: 3rem 0;
+    margin: 0;
   }
   
   a {

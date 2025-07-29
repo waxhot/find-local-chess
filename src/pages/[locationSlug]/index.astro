@@ -10,9 +10,10 @@ export async function getStaticPaths() {
   }));
 }
 
+const { locationSlug } = Astro.params;
 const { location } = Astro.props;
 const allEvents = await getCollection('events');
-const locationEvents = allEvents.filter(event => event.data.locationSlug === location.slug);
+const locationEvents = allEvents.filter(event => event.data.locationSlug === locationSlug);
 
 const eventsByDay = locationEvents.reduce((acc, event) => {
   const day = event.data.day;
@@ -39,45 +40,59 @@ const sortedDays = Object.keys(eventsByDay).sort(
 ---
 
 <BaseLayout title={`${location.data.name} Chess Events`}>
-  <section>
-    <h1>Chess Events in {location.data.name}</h1>
-    <p>{location.data.description}</p>
-  </section>
+  <wa-card>
+    <section>
+      <h1>Chess Events in {location.data.name}</h1>
+      <p>{location.data.description}</p>
+    </section>
+  </wa-card>
 
   {sortedDays.length > 0 ? (
     sortedDays.map(day => (
-      <section>
-        <h2>{day}</h2>
-        <div class="events-list">
-          {eventsByDay[day].map((event) => (
-            <article class="event-item">
-              <div class="event-content">
-                <h3>
-                  <a href={`/${location.slug}/events/${event.slug}`}>{event.data.title}</a>
-                </h3>
-                <div class="event-details">
-                  <span>🕐 {event.data.time}</span>
-                  <span>📍 {event.data.location}</span>
-                  {event.data.entryFee && <span>💰 {event.data.entryFee}</span>}
+      <wa-card>
+        <section>
+          <h2>{day}</h2>
+          <div class="events-list">
+            {eventsByDay[day].map((event) => (
+              <wa-card>
+                <div class="event-content">
+                  <h3>
+                    <a href={`/${locationSlug}/events/${event.slug}`}>{event.data.title}</a>
+                  </h3>
+                  <div class="event-details">
+                    <span>🕐 {event.data.time}</span>
+                    <span>📍 {event.data.location}</span>
+                    {event.data.entryFee && <span>💰 {event.data.entryFee}</span>}
+                  </div>
+                  <p>{event.data.description}</p>
+                  <div class="event-tags">
+                    {event.data.tags.map(tag => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
                 </div>
-                <p>{event.data.description}</p>
-                <div class="event-tags">
-                  {event.data.tags.map(tag => (
-                    <span class="tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+              </wa-card>
+            ))}
+          </div>
+        </section>
+      </wa-card>
     ))
   ) : (
-    <p>No events found for {location.data.name}. <a href="/contribute">Add an event!</a></p>
+    <wa-card>
+      <p>No events found for {location.data.name}. <a href="/contribute">Add an event!</a></p>
+    </wa-card>
   )}
 </BaseLayout>
 
 <style>
+  wa-card + wa-card {
+    margin-top: 2rem;
+  }
+
+  section {
+    margin: 0;
+  }
+
   .events-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -85,20 +100,7 @@ const sortedDays = Object.keys(eventsByDay).sort(
     margin: 2rem 0;
   }
   
-  .event-item {
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: box-shadow 0.2s;
-    box-shadow: 0 4px 8px var(--color-shadow);
-    backdrop-filter: blur(5px);
-  }
   
-  .event-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px var(--color-shadow);
-  }
   
   .event-content h3 {
     margin-top: 0;

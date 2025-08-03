@@ -136,15 +136,17 @@ nav a:hover {
   left: 2px;
 }
 
-main {
-  background: var(--card);
-  border-radius: 0; /* Sharp corners for 8-bit */
+wa-card {
+  border: 4px solid var(--border);
   padding: 2rem;
   margin-bottom: 2rem;
-  box-shadow: 
-    4px 4px 0 var(--secondary),
-    8px 8px 0 var(--accent); /* More pronounced pixelated shadow */
-  border: 2px solid var(--border); /* Solid 8-bit border */
+  background: var(--card);
+}
+
+main {
+  background: var(--card);
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
 
 h1 {
@@ -152,6 +154,34 @@ h1 {
   color: var(--foreground);
   margin-top: 0;
   text-shadow: 1px 1px 0 var(--accent);
+}
+
+.page-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.grid-span-all {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* General link styling for content */
@@ -190,10 +220,6 @@ section {
   border-radius: 0; /* Sharp corners for 8-bit */
   padding: 2rem;
   margin-bottom: 2rem;
-  box-shadow: 
-    4px 4px 0 var(--secondary),
-    8px 8px 0 var(--accent); /* More pronounced pixelated shadow */
-  border: 2px solid var(--border); /* Solid 8-bit border */
 }
 
 /* Code Block Styling */

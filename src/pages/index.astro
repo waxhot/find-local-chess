@@ -6,44 +6,55 @@ const allLocations = await getCollection('locations');
 ---
 
 <BaseLayout title="Find Local Chess - Discover Chess Events Near You">
-  <wa-card>
-    <section>
-      <h1>Welcome to Find Local Chess</h1>
-      
-      <p>
-        Find local chess events, tournaments, and meetups in your area. 
-        Join our community and improve your game!
-      </p>
-    </section>
-  </wa-card>
+  <div class="page-container grid-container">
+    <wa-card class="grid-span-all">
+      <section>
+        <h1>Welcome to Find Local Chess</h1>
+        
+        <p>
+          Find local chess events, tournaments, and meetups in your area. 
+          Join our community and improve your game!
+        </p>
+      </section>
+    </wa-card>
 
-  <wa-card>
-    <section>
-      <h2>Explore Locations</h2>
-      <p>Select a location to find chess events near you:</p>
-      <div class="locations-list">
-        {allLocations.map((location) => (
-          <a href={`/${location.slug}`} class="location-card">
-            <h3>{location.data.name}</h3>
-            <p>{location.data.description}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-  </wa-card>
+    <wa-card>
+      <section>
+        <h2>Explore Locations</h2>
+        <p>Select a location to find chess events near you:</p>
+        <div class="locations-list">
+          {allLocations.map((location) => (
+            <a href={`/${location.slug}`} class="location-card">
+              <h3>{location.data.name}</h3>
+              <p>{location.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    </wa-card>
 
-  <wa-card>
-    <section>
-      <h2>Get Involved</h2>
-      <p>
-        This is a community-driven website. Help us keep it up to date by contributing 
-        event information through GitHub pull requests.
-      </p>
-      <p>
-        <a href="/contribute">Learn how to contribute →</a>
-      </p>
-    </section>
-  </wa-card>
+    <wa-card>
+      <section>
+        <h2>Get Involved</h2>
+        <p>
+          This is a community-driven website. Help us keep it up to date by contributing 
+          event information through GitHub pull requests.
+        </p>
+        <p>
+          <a href="/contribute">Learn how to contribute →</a>
+        </p>
+      </section>
+    </wa-card>
+
+    <wa-card>
+      <section>
+        <h2>Featured Event</h2>
+        <p>
+          Stay tuned for our next big tournament! More details to come.
+        </p>
+      </section>
+    </wa-card>
+  </div>
 </BaseLayout>
 
 <style>

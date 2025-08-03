@@ -15,75 +15,77 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout title={`${entry.data.title} - Find Local Chess`}>
-  <article class="event-detail">
-    <header class="event-header">
-      <h1>{entry.data.title}</h1>
-      
-      <wa-card>
-        <div class="meta-group">
-          <h3>📅 When</h3>
-          <p><strong>{entry.data.day}</strong></p>
-          <p>{entry.data.time}</p>
-        </div>
+  <div class="page-container">
+    <article class="event-detail">
+      <header class="event-header">
+        <h1>{entry.data.title}</h1>
         
-        <div class="meta-group">
-          <h3>📍 Where</h3>
-          <p><strong>{entry.data.location}</strong></p>
-          {entry.data.address && <p>{entry.data.address}</p>}
-        </div>
+        <wa-card>
+          <div class="meta-group">
+            <h3>📅 When</h3>
+            <p><strong>{entry.data.day}</strong></p>
+            <p>{entry.data.time}</p>
+          </div>
+          
+          <div class="meta-group">
+            <h3>📍 Where</h3>
+            <p><strong>{entry.data.location}</strong></p>
+            {entry.data.address && <p>{entry.data.address}</p>}
+          </div>
+          
+          <div class="meta-group">
+            <h3>👥 Organizer</h3>
+            <p>{entry.data.organizer}</p>
+            {entry.data.contact && (
+              <p><a href={`mailto:${entry.data.contact}`}>{entry.data.contact}</a></p>
+            )}
+          </div>
+        </wa-card>
         
-        <div class="meta-group">
-          <h3>👥 Organizer</h3>
-          <p>{entry.data.organizer}</p>
-          {entry.data.contact && (
-            <p><a href={`mailto:${entry.data.contact}`}>{entry.data.contact}</a></p>
+        <div class="event-details-grid">
+          {entry.data.entryFee && (
+            <wa-card>
+              <strong>💰 Entry Fee:</strong> {entry.data.entryFee}
+            </wa-card>
+          )}
+          
+          {entry.data.timeControl && (
+            <wa-card>
+              <strong>⏱️ Time Control:</strong> {entry.data.timeControl}
+            </wa-card>
+          )}
+          
+          {entry.data.rounds && (
+            <wa-card>
+              <strong>🏆 Rounds:</strong> {entry.data.rounds}
+            </wa-card>
+          )}
+          
+          {entry.data.link && (
+            <wa-card>
+              <strong>🔗 More Info:</strong> <a href={entry.data.link} target="_blank" rel="noopener noreferrer">Visit website</a>
+            </wa-card>
           )}
         </div>
+        
+        {entry.data.tags.length > 0 && (
+          <div class="event-tags">
+            {entry.data.tags.map(tag => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </header>
+      
+      <wa-card class="event-content">
+        <Content />
       </wa-card>
       
-      <div class="event-details-grid">
-        {entry.data.entryFee && (
-          <wa-card>
-            <strong>💰 Entry Fee:</strong> {entry.data.entryFee}
-          </wa-card>
-        )}
-        
-        {entry.data.timeControl && (
-          <wa-card>
-            <strong>⏱️ Time Control:</strong> {entry.data.timeControl}
-          </wa-card>
-        )}
-        
-        {entry.data.rounds && (
-          <wa-card>
-            <strong>🏆 Rounds:</strong> {entry.data.rounds}
-          </wa-card>
-        )}
-        
-        {entry.data.link && (
-          <wa-card>
-            <strong>🔗 More Info:</strong> <a href={entry.data.link} target="_blank" rel="noopener noreferrer">Visit website</a>
-          </wa-card>
-        )}
-      </div>
-      
-      {entry.data.tags.length > 0 && (
-        <div class="event-tags">
-          {entry.data.tags.map(tag => (
-            <span class="tag">{tag}</span>
-          ))}
-        </div>
-      )}
-    </header>
-    
-    <wa-card class="event-content">
-      <Content />
-    </wa-card>
-    
-    <footer class="event-footer">
-      <p><a href={`/${entry.data.locationSlug}/events`}>← Back to all events</a></p>
-    </footer>
-  </article>
+      <footer class="event-footer">
+        <p><a href={`/${entry.data.locationSlug}/events`}>← Back to all events</a></p>
+      </footer>
+    </article>
+  </div>
 </BaseLayout>
 
 <style>

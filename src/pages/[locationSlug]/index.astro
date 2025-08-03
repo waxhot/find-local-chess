@@ -40,48 +40,50 @@ const sortedDays = Object.keys(eventsByDay).sort(
 ---
 
 <BaseLayout title={`${location.data.name} Chess Events`}>
-  <wa-card>
-    <section>
-      <h1>Chess Events in {location.data.name}</h1>
-      <p>{location.data.description}</p>
-    </section>
-  </wa-card>
-
-  {sortedDays.length > 0 ? (
-    sortedDays.map(day => (
-      <wa-card>
-        <section>
-          <h2>{day}</h2>
-          <div class="events-list">
-            {eventsByDay[day].map((event) => (
-              <wa-card>
-                <div class="event-content">
-                  <h3>
-                    <a href={`/${locationSlug}/events/${event.slug}`}>{event.data.title}</a>
-                  </h3>
-                  <div class="event-details">
-                    <span>🕐 {event.data.time}</span>
-                    <span>📍 {event.data.location}</span>
-                    {event.data.entryFee && <span>💰 {event.data.entryFee}</span>}
-                  </div>
-                  <p>{event.data.description}</p>
-                  <div class="event-tags">
-                    {event.data.tags.map(tag => (
-                      <span class="tag">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </wa-card>
-            ))}
-          </div>
-        </section>
-      </wa-card>
-    ))
-  ) : (
-    <wa-card>
-      <p>No events found for {location.data.name}. <a href="/contribute">Add an event!</a></p>
+  <div class="page-container">
+    <wa-card class="grid-span-all">
+      <section>
+        <h1>Chess Events in {location.data.name}</h1>
+        <p>{location.data.description}</p>
+      </section>
     </wa-card>
-  )}
+
+    {sortedDays.length > 0 ? (
+      sortedDays.map(day => (
+        <wa-card>
+          <section>
+            <h2>{day}</h2>
+            <div class="events-list">
+              {eventsByDay[day].map((event) => (
+                <wa-card>
+                  <div class="event-content">
+                    <h3>
+                      <a href={`/${locationSlug}/events/${event.slug}`}>{event.data.title}</a>
+                    </h3>
+                    <div class="event-details">
+                      <span>🕐 {event.data.time}</span>
+                      <span>📍 {event.data.location}</span>
+                      {event.data.entryFee && <span>💰 {event.data.entryFee}</span>}
+                    </div>
+                    <p>{event.data.description}</p>
+                    <div class="event-tags">
+                      {event.data.tags.map(tag => (
+                        <span class="tag">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </wa-card>
+              ))}
+            </div>
+          </section>
+        </wa-card>
+      ))
+    ) : (
+      <wa-card>
+        <p>No events found for {location.data.name}. <a href="/contribute">Add an event!</a></p>
+      </wa-card>
+    )}
+  </div>
 </BaseLayout>
 
 <style>

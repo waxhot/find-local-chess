@@ -1,20 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
   const locations = await getCollection('locations');
-  const events = await getCollection('events');
-
-  const staticPaths = [];
-
-  for (const location of locations) {
-    staticPaths.push({
-      params: { locationSlug: location.slug },
-      props: { location },
-    });
-  }
-  return staticPaths;
+  return locations.map((location) => ({
+    params: { locationSlug: location.slug },
+    props: { location },
+  }));
 }
 
 const { locationSlug } = Astro.params;
@@ -24,7 +17,7 @@ const allEvents = await getCollection('events');
 const locationEvents = allEvents.filter(event => event.data.locationSlug === locationSlug);
 
 // Group events by day of the week
-const eventsByDay = locationEvents.reduce((acc, event) => {
+const eventsByDay: Record<string, CollectionEntry<"events">[]> = locationEvents.reduce((acc: Record<string, CollectionEntry<"events">[]>, event) => {
   const day = event.data.day;
   if (!acc[day]) {
     acc[day] = [];
@@ -54,17 +47,20 @@ const sortedDays = Object.keys(eventsByDay).sort(
       <h1>Events in {location.data.name}</h1>
       
       <div>
-        {allEvents.length > 0 ? (
-          allEvents.map(event => (
-            <a href={`/${location.slug}/events/${event.slug.split('/').slice(1).join('/')}`}>
-              <h3>{event.data.title}</h3>
-              <p>{event.data.date.toDateString()}</p>
-              <p>{event.data.location}</p>
-            </a>
-          ))
-        ) : (
-          <p>No upcoming events in this location. Check back soon!</p>
-        )}
+        {sortedDays.map(day => (
+          <section>
+            <h2>{day}</h2>
+            <div>
+              {eventsByDay[day].map((event) => (
+                <a href={`/${location.slug}/events/${event.slug.split('/').slice(1).join('/')}`}>
+                  <h3>{event.data.title}</h3>
+                  <p>{event.data.day}</p>
+                  <p>{event.data.location}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
       </div>
     </section>
   </div>

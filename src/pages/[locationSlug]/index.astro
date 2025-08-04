@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
@@ -15,7 +15,7 @@ const { location } = Astro.props;
 const allEvents = await getCollection('events');
 const locationEvents = allEvents.filter(event => event.data.locationSlug === locationSlug);
 
-const eventsByDay = locationEvents.reduce((acc, event) => {
+const eventsByDay: Record<string, CollectionEntry<"events">[]> = locationEvents.reduce((acc: Record<string, CollectionEntry<"events">[]>, event) => {
   const day = event.data.day;
   if (!acc[day]) {
     acc[day] = [];

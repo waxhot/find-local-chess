@@ -70,9 +70,12 @@ const { Content } = await entry.render();
         
         {entry.data.tags.length > 0 && (
           <div>
-            {entry.data.tags.map(tag => (
-              <span>{tag}</span>
-            ))}
+            <h3>Tags</h3>
+            <ul>
+              {entry.data.tags.map(tag => (
+                <li>{tag}</li>
+              ))}
+            </ul>
           </div>
         )}
       </header>

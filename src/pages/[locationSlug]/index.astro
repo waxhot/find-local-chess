@@ -63,11 +63,11 @@ const sortedDays = Object.keys(eventsByDay).sort(
                     {event.data.entryFee && <span>💰 {event.data.entryFee}</span>}
                   </div>
                   <p>{event.data.description}</p>
-                  <div>
+                  <ul>
                     {event.data.tags.map(tag => (
-                      <span>{tag}</span>
+                      <li>{tag}</li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
             ))}

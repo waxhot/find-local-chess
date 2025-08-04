@@ -15,197 +15,75 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout title={`${entry.data.title} - Find Local Chess`}>
-  <div class="page-container">
-    <article class="event-detail">
-      <header class="event-header">
+  <div>
+    <article>
+      <header>
         <h1>{entry.data.title}</h1>
         
-        <wa-card>
-          <div class="meta-group">
+        <div>
+          <div>
             <h3>📅 When</h3>
             <p><strong>{entry.data.day}</strong></p>
             <p>{entry.data.time}</p>
           </div>
           
-          <div class="meta-group">
+          <div>
             <h3>📍 Where</h3>
             <p><strong>{entry.data.location}</strong></p>
             {entry.data.address && <p>{entry.data.address}</p>}
           </div>
           
-          <div class="meta-group">
+          <div>
             <h3>👥 Organizer</h3>
             <p>{entry.data.organizer}</p>
             {entry.data.contact && (
               <p><a href={`mailto:${entry.data.contact}`}>{entry.data.contact}</a></p>
             )}
           </div>
-        </wa-card>
+        </div>
         
-        <div class="event-details-grid">
+        <div>
           {entry.data.entryFee && (
-            <wa-card>
+            <div>
               <strong>💰 Entry Fee:</strong> {entry.data.entryFee}
-            </wa-card>
+            </div>
           )}
           
           {entry.data.timeControl && (
-            <wa-card>
+            <div>
               <strong>⏱️ Time Control:</strong> {entry.data.timeControl}
-            </wa-card>
+            </div>
           )}
           
           {entry.data.rounds && (
-            <wa-card>
+            <div>
               <strong>🏆 Rounds:</strong> {entry.data.rounds}
-            </wa-card>
+            </div>
           )}
           
           {entry.data.link && (
-            <wa-card>
+            <div>
               <strong>🔗 More Info:</strong> <a href={entry.data.link} target="_blank" rel="noopener noreferrer">Visit website</a>
-            </wa-card>
+            </div>
           )}
         </div>
         
         {entry.data.tags.length > 0 && (
-          <div class="event-tags">
+          <div>
             {entry.data.tags.map(tag => (
-              <span class="tag">{tag}</span>
+              <span>{tag}</span>
             ))}
           </div>
         )}
       </header>
       
-      <wa-card class="event-content">
+      <div>
         <Content />
-      </wa-card>
+      </div>
       
-      <footer class="event-footer">
+      <footer>
         <p><a href={`/${entry.data.locationSlug}/events`}>← Back to all events</a></p>
       </footer>
     </article>
   </div>
 </BaseLayout>
-
-<style>
-  wa-card + wa-card {
-    margin-top: 2rem;
-  }
-
-  .event-detail {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .event-header {
-    margin-bottom: 3rem;
-  }
-  
-  .event-header h1 {
-    color: var(--text-color);
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-  }
-  
-  .event-meta {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    background: var(--color-card-bg);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    backdrop-filter: blur(10px);
-  }
-  
-  .meta-group h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: var(--color-text);
-    font-size: 1.1rem;
-  }
-  
-  .meta-group p {
-    margin: 0.5rem 0;
-  }
-  
-  .meta-group a {
-    color: var(--color-link);
-    text-decoration: none;
-  }
-  
-  .meta-group a:hover {
-    text-decoration: underline;
-  }
-  
-  .event-details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  
-  
-  .event-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  .tag {
-    background: var(--color-link);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-size: 0.875rem;
-  }
-  
-  
-  
-  .event-content h2 {
-    color: var(--color-text);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .event-content ul {
-    padding-left: 1.5rem;
-  }
-  
-  .event-content li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .event-footer {
-    border-top: 1px solid var(--color-border);
-    padding-top: 2rem;
-  }
-  
-  .event-footer a {
-    color: var(--color-link);
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  .event-footer a:hover {
-    text-decoration: underline;
-  }
-  
-  @media (max-width: 768px) {
-    .event-header h1 {
-      font-size: 2rem;
-    }
-    
-    .event-meta {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-    
-    .event-details-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

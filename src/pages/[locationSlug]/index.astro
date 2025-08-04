@@ -40,105 +40,42 @@ const sortedDays = Object.keys(eventsByDay).sort(
 ---
 
 <BaseLayout title={`${location.data.name} Chess Events`}>
-  <div class="page-container">
-    <wa-card class="grid-span-all">
-      <section>
-        <h1>Chess Events in {location.data.name}</h1>
-        <p>{location.data.description}</p>
-      </section>
-    </wa-card>
+  <div>
+    <section>
+      <h1>Chess Events in {location.data.name}</h1>
+      <p>{location.data.description}</p>
+    </section>
 
     {sortedDays.length > 0 ? (
       sortedDays.map(day => (
-        <wa-card>
-          <section>
-            <h2>{day}</h2>
-            <div class="events-list">
-              {eventsByDay[day].map((event) => (
-                <wa-card>
-                  <div class="event-content">
-                    <h3>
-                      <a href={`/${locationSlug}/events/${event.slug}`}>{event.data.title}</a>
-                    </h3>
-                    <div class="event-details">
-                      <span>🕐 {event.data.time}</span>
-                      <span>📍 {event.data.location}</span>
-                      {event.data.entryFee && <span>💰 {event.data.entryFee}</span>}
-                    </div>
-                    <p>{event.data.description}</p>
-                    <div class="event-tags">
-                      {event.data.tags.map(tag => (
-                        <span class="tag">{tag}</span>
-                      ))}
-                    </div>
+        <section>
+          <h2>{day}</h2>
+          <div>
+            {eventsByDay[day].map((event) => (
+              <div>
+                <div>
+                  <h3>
+                    <a href={`/${locationSlug}/events/${event.slug}`}>{event.data.title}</a>
+                  </h3>
+                  <div>
+                    <span>🕐 {event.data.time}</span>
+                    <span>📍 {event.data.location}</span>
+                    {event.data.entryFee && <span>💰 {event.data.entryFee}</span>}
                   </div>
-                </wa-card>
-              ))}
-            </div>
-          </section>
-        </wa-card>
+                  <p>{event.data.description}</p>
+                  <div>
+                    {event.data.tags.map(tag => (
+                      <span>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       ))
     ) : (
-      <wa-card>
-        <p>No events found for {location.data.name}. <a href="/contribute">Add an event!</a></p>
-      </wa-card>
+      <p>No events found for {location.data.name}. <a href="/contribute">Add an event!</a></p>
     )}
   </div>
 </BaseLayout>
-
-<style>
-  wa-card + wa-card {
-    margin-top: 2rem;
-  }
-
-  section {
-    margin: 0;
-  }
-
-  .events-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-  }
-  
-  
-  
-  .event-content h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-  
-  .event-content h3 a {
-    text-decoration: none;
-    color: var(--color-text);
-  }
-  
-  .event-content h3 a:hover {
-    text-decoration: underline;
-  }
-  
-  .event-details {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    font-size: 0.875rem;
-    color: var(--color-text);
-  }
-  
-  .event-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-  
-  .tag {
-    background: var(--color-link);
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.875rem;
-  }
-</style>

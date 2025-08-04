@@ -1,6 +1,4 @@
 ---
-import ThemeToggle from '../components/ThemeToggle.astro';
-import '@awesome.me/webawesome/dist/styles/webawesome.css';
 export interface Props {
   title: string;
   description?: string;
@@ -10,71 +8,37 @@ const { title, description = "Find local chess events, tournaments, and meetups 
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <link href="https://fonts.googleapis.com/css2?family=Cherry+Cream+Soda&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <title>{title}</title>
-  <style is:global>
-      @import '../styles/global.css';
-    </style>
-    <script>
-        const themeToggleButton = document.getElementById('theme-toggle');
-
-        // Function to set the theme
-        const setTheme = (theme) => {
-            if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            }
-        };
-
-        // Event listener for the button
-        themeToggleButton.addEventListener('click', () => {
-            const currentTheme = localStorage.getItem('color-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            setTheme(newTheme);
-        });
-
-        // Set initial theme
-        const initialTheme = localStorage.getItem('color-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        setTheme(initialTheme);
-    </script>
   </head>
   <body>
-    <header class="site-header">
-      <h1>♟️<span> Find Local Chess</span></h1>
+    <header>
+      <h1><a href="/">♟️ Find Local Chess</a></h1>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/contribute">Contribute</a></li>
         </ul>
       </nav>
-      <div class="theme-toggle-container">
-        <ThemeToggle />
-      </div>
     </header>
     
-    <div class="container">
-      <main>
-        <slot />
-      </main>
-      
-      <footer>
-        <p>
-          Want to add an event? 
-          <a href="https://github.com/your-username/chess-website" target="_blank">
-            Submit a pull request on GitHub
-          </a>
-        </p>
-      </footer>
-    </div>
+    <main>
+      <slot />
+    </main>
+    
+    <footer>
+      <p>
+        Want to add an event? 
+        <a href="https://github.com/your-username/chess-website" target="_blank" rel="noopener noreferrer">
+          Submit a pull request on GitHub
+        </a>
+      </p>
+    </footer>
   </body>
 </html>

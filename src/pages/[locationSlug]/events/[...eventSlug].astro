@@ -15,78 +15,122 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout title={`${entry.data.title} - Find Local Chess`}>
-  <div>
+  <div class="container">
     <article>
-      <header>
+      <header class="hero">
         <h1>{entry.data.title}</h1>
-        
-        <div>
-          <div>
-            <h3>📅 When</h3>
-            <p><strong>{entry.data.day}</strong></p>
-            <p>{entry.data.time}</p>
-          </div>
-          
-          <div>
-            <h3>📍 Where</h3>
-            <p><strong>{entry.data.location}</strong></p>
-            {entry.data.address && <p>{entry.data.address}</p>}
-          </div>
-          
-          <div>
-            <h3>👥 Organizer</h3>
-            <p>{entry.data.organizer}</p>
-            {entry.data.contact && (
-              <p><a href={`mailto:${entry.data.contact}`}>{entry.data.contact}</a></p>
-            )}
-          </div>
-        </div>
-        
-        <div>
-          {entry.data.entryFee && (
-            <div>
-              <strong>💰 Entry Fee:</strong> {entry.data.entryFee}
-            </div>
-          )}
-          
-          {entry.data.timeControl && (
-            <div>
-              <strong>⏱️ Time Control:</strong> {entry.data.timeControl}
-            </div>
-          )}
-          
-          {entry.data.rounds && (
-            <div>
-              <strong>🏆 Rounds:</strong> {entry.data.rounds}
-            </div>
-          )}
-          
-          {entry.data.link && (
-            <div>
-              <strong>🔗 More Info:</strong> <a href={entry.data.link} target="_blank" rel="noopener noreferrer">Visit website</a>
-            </div>
-          )}
-        </div>
-        
-        {entry.data.tags.length > 0 && (
-          <div>
-            <h3>Tags</h3>
-            <ul>
-              {entry.data.tags.map(tag => (
-                <li>{tag}</li>
-              ))}
-            </ul>
-          </div>
-        )}
       </header>
-      
-      <div>
-        <Content />
+
+      <div class="grid">
+        <div class="details-grid">
+          <wa-card>
+            <h2 slot="header">Details</h2>
+            <div class="details-grid-2-col">
+              <div>
+                <h3>📅 When</h3>
+                <p><strong>{entry.data.day}</strong></p>
+                <p>{entry.data.time}</p>
+              </div>
+              <div>
+                <h3>📍 Where</h3>
+                <p><strong>{entry.data.location}</strong></p>
+                {entry.data.address && <p>{entry.data.address}</p>}
+              </div>
+              <div>
+                <h3>👥 Organizer</h3>
+                <p>{entry.data.organizer}</p>
+                {entry.data.contact && (
+                  <p><a href={`mailto:${entry.data.contact}`}>{entry.data.contact}</a></p>
+                )}
+              </div>
+            </div>
+          </wa-card>
+
+          <wa-card>
+            <h2 slot="header">Info</h2>
+            <div class="details-grid-2-col">
+              {entry.data.entryFee && (
+                <div>
+                  <strong>💰 Entry Fee:</strong> {entry.data.entryFee}
+                </div>
+              )}
+              {entry.data.timeControl && (
+                <div>
+                  <strong>⏱️ Time Control:</strong> {entry.data.timeControl}
+                </div>
+              )}
+              {entry.data.rounds && (
+                <div>
+                  <strong>🏆 Rounds:</strong> {entry.data.rounds}
+                </div>
+              )}
+              {entry.data.link && (
+                <div>
+                  <strong>🔗 More Info:</strong> <a href={entry.data.link} target="_blank" rel="noopener noreferrer">Visit website</a>
+                </div>
+              )}
+            </div>
+          </wa-card>
+        </div>
+
+        <div class="content-area">
+            <wa-card>
+                <h2 slot="header">About this event</h2>
+                <Content />
+            </wa-card>
+        </div>
       </div>
-      
+
       <footer>
-        <p><a href={`/${entry.data.locationSlug}/events`}>← Back to all events</a></p>
+        <div class="tags">
+            {entry.data.tags.map(tag => (
+                <wa-tag>{tag}</wa-tag>
+            ))}
+        </div>
+        <p><a href={`/${entry.data.locationSlug}`}>← Back to all events</a></p>
       </footer>
     </article>
   </div>
 </BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+  }
+  
+  .details-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  
+  .details-grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  wa-card {
+    background-color: var(--wa-color-surface-raised);
+    border: 1px solid var(--wa-color-surface-border);
+    box-shadow: var(--wa-shadow-s);
+  }
+  
+  footer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+</style>

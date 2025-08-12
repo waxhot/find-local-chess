@@ -9,6 +9,10 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+html.wa-light body {
+  background-color: var(--wa-color-surface-lowered);
+}
+
 h1, h2, h3 {
   line-height: var(--wa-line-height-condensed);
 }

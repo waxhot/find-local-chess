@@ -40,8 +40,8 @@ const sortedDays = Object.keys(eventsByDay).sort(
 ---
 
 <BaseLayout title={`${location.data.name} Chess Events`}>
-  <div>
-    <section>
+  <div class="container">
+    <section class="hero">
       <h1>Chess Events in {location.data.name}</h1>
       <p>{location.data.description}</p>
     </section>
@@ -50,26 +50,24 @@ const sortedDays = Object.keys(eventsByDay).sort(
       sortedDays.map(day => (
         <section>
           <h2>{day}</h2>
-          <div>
+          <div class="grid">
             {eventsByDay[day].map((event) => (
-              <div>
+              <wa-card>
+                <h3 slot="header">
+                  <a href={`/${locationSlug}/events/${event.slug}`}>{event.data.title}</a>
+                </h3>
                 <div>
-                  <h3>
-                    <a href={`/${locationSlug}/events/${event.slug}`}>{event.data.title}</a>
-                  </h3>
-                  <div>
-                    <span>🕐 {event.data.time}</span>
-                    <span>📍 {event.data.location}</span>
-                    {event.data.entryFee && <span>💰 {event.data.entryFee}</span>}
-                  </div>
-                  <p>{event.data.description}</p>
-                  <ul>
-                    {event.data.tags.map(tag => (
-                      <li>{tag}</li>
-                    ))}
-                  </ul>
+                  <p><strong>Time:</strong> {event.data.time}</p>
+                  <p><strong>Location:</strong> {event.data.location}</p>
+                  {event.data.entryFee && <p><strong>Entry Fee:</strong> {event.data.entryFee}</p>}
                 </div>
-              </div>
+                <p>{event.data.description}</p>
+                <div class="tags">
+                  {event.data.tags.map(tag => (
+                    <wa-tag>{tag}</wa-tag>
+                  ))}
+                </div>
+              </wa-card>
             ))}
           </div>
         </section>
@@ -79,3 +77,28 @@ const sortedDays = Object.keys(eventsByDay).sort(
     )}
   </div>
 </BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  wa-card {
+    background-color: var(--wa-color-surface-raised);
+    border: 1px solid var(--wa-color-surface-border);
+    box-shadow: var(--wa-shadow-s);
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+</style>

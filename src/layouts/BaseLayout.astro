@@ -29,7 +29,7 @@ const { title, description = "Find local chess events, tournaments, and meetups 
     <a href="#main-content" class="wa-visually-hidden skip-link">Skip to main content</a>
     <header>
       <div class="header-content">
-        <h1><a href="/">♟️ Find Local Chess</a></h1>
+        <h1><a href="/"><img src="/chess.svg" alt="Chess" class="chess-icon" /> Find Local Chess</a></h1>
         <nav aria-label="Primary">
           <ul>
             <li><a href="/">Home</a></li>
@@ -71,6 +71,21 @@ const { title, description = "Find local chess events, tournaments, and meetups 
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .header-content h1 a {
+    display: flex;
+    align-items: end;
+    gap: 0.5rem;
+  }
+
+  .chess-icon {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  .wa-dark .chess-icon {
+    filter: invert(1);
   }
 
   nav ul {

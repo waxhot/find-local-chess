@@ -64,68 +64,39 @@ const { title, description = "Find local chess events, tournaments, and meetups 
   </body>
 </html>
 
-<style is:global>
-  /* Layout */
+<style>
   header {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--wa-color-surface-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  body {
-    background-color: var(--wa-color-surface-default);
-    color: var(--wa-color-text-normal);
-    padding: 1rem;
+  nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: var(--wa-space-m);
   }
 
-  html.wa-light body {
-    background-color: var(--wa-color-surface-default);
-    color: var(--wa-color-text-normal);
+  nav a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: var(--wa-border-radius-m);
+    transition: background-color 0.2s ease-in-out;
   }
 
-  /* Skip link: use Web Awesome's wa-visually-hidden to hide until focus */
-  .skip-link {
-    background: var(--wa-color-surface-default);
-    color: var(--wa-color-text-normal);
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.25rem;
-    box-shadow: 0 1px 2px rgba(0,0,0,.2);
-  }
-  .skip-link:focus,
-  .skip-link:focus-visible {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    outline: 2px solid var(--wa-color-brand-fill-loud);
-    outline-offset: 2px;
+  nav a:hover {
+    background-color: var(--wa-color-surface-lowered);
+    text-decoration: none;
   }
 
-  /* Focus visibility for all interactive elements */
-  a:focus-visible,
-  button:focus-visible,
-  [role="button"]:focus-visible,
-  input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible,
-  summary:focus-visible,
-  wa-button:focus-visible,
-  wa-select:focus-visible,
-  wa-input:focus-visible {
-    outline: 2px solid var(--wa-color-brand-fill-loud);
-    outline-offset: 2px;
-  }
-
-  /* Respect reduced motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation: none !important;
-      transition: none !important;
-      scroll-behavior: auto !important;
-    }
-    .skip-link {
-      transition: none;
-    }
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--wa-color-surface-border);
+    margin-top: 2rem;
   }
 </style>

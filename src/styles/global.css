@@ -1,0 +1,94 @@
+/* src/styles/global.css */
+body {
+  font-family: var(--wa-font-family-body);
+  background-color: var(--wa-color-surface-default);
+  color: var(--wa-color-text-normal);
+  line-height: var(--wa-line-height-normal);
+  margin: 0;
+  padding: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3 {
+  line-height: var(--wa-line-height-condensed);
+}
+
+a {
+  color: var(--wa-color-text-link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Layout */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--wa-color-surface-raised);
+  border-bottom: 1px solid var(--wa-color-surface-border);
+  padding: 1rem 2rem;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--wa-color-surface-border);
+    margin-top: 2rem;
+    background-color: var(--wa-color-surface-raised);
+}
+
+
+/* Skip link: use Web Awesome's wa-visually-hidden to hide until focus */
+.skip-link {
+  background: var(--wa-color-surface-default);
+  color: var(--wa-color-text-normal);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  outline: 2px solid var(--wa-color-brand-fill-loud);
+  outline-offset: 2px;
+}
+
+/* Focus visibility for all interactive elements */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+wa-button:focus-visible,
+wa-select:focus-visible,
+wa-input:focus-visible {
+  outline: 2px solid var(--wa-color-brand-fill-loud);
+  outline-offset: 2px;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .skip-link {
+    transition: none;
+  }
+}

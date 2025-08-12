@@ -6,47 +6,100 @@ const allLocations = await getCollection('locations');
 ---
 
 <BaseLayout title="Find Local Chess - Discover Chess Events Near You">
-  <div>
-    <section>
+  <div class="container">
+    <section class="hero">
       <h1>Find Local Chess Events Near You</h1>
-      
       <p>
         Find local chess events, tournaments, and meetups in your area. 
         Join our community and improve your game!
       </p>
     </section>
 
-    <section>
-      <h2>Explore Locations</h2>
-      <p>Select a location to find chess events near you:</p>
-      <ul>
-        {allLocations.map((location) => (
-          <li>
-            <a href={`/${location.slug}`}>
-              <h3>{location.data.name}</h3>
-              <p>{location.data.description}</p>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <div class="grid">
+      <div class="column">
+        <wa-card>
+          <h2 slot="header">Explore Locations</h2>
+          <ul>
+            {allLocations.map((location) => (
+              <li>
+                <a href={`/${location.slug}`}>
+                  <h3>{location.data.name}</h3>
+                  <p>{location.data.description}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </wa-card>
+      </div>
 
-    <section>
-      <h2>Get Involved</h2>
-      <p>
-        This is a community-driven website. Help us keep it up to date by contributing 
-        event information through GitHub pull requests.
-      </p>
-      <p>
-        <a href="/contribute">Learn how to contribute →</a>
-      </p>
-    </section>
+      <div class="column">
+        <wa-card>
+          <h2 slot="header">Get Involved</h2>
+          <p>
+            This is a community-driven website. Help us keep it up to date by contributing 
+            event information through GitHub pull requests.
+          </p>
+          <p>
+            <a href="/contribute">Learn how to contribute →</a>
+          </p>
+        </wa-card>
 
-    <section>
-      <h2>Featured Event</h2>
-      <p>
-        Stay tuned for our next big tournament! More details to come.
-      </p>
-    </section>
+        <wa-card style="margin-top: 1rem;">
+          <h2 slot="header">Featured Event</h2>
+          <p>
+            Stay tuned for our next big tournament! More details to come.
+          </p>
+        </wa-card>
+      </div>
+    </div>
   </div>
 </BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--wa-space-l);
+  }
+
+  wa-card {
+    background-color: var(--wa-color-surface-raised);
+    border: 1px solid var(--wa-color-surface-border);
+    box-shadow: var(--wa-shadow-s);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    padding: 0.5rem 0;
+  }
+
+  li a {
+    display: block;
+    padding: 1rem;
+    border-radius: var(--wa-border-radius-m);
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  li a:hover {
+    background-color: var(--wa-color-surface-lowered);
+    text-decoration: none;
+  }
+
+  h3 {
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    margin: 0;
+  }
+</style>

@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
-export default defineConfig({
-  site: 'https://dtm5011.github.io',
-  base: process.env.NODE_ENV === 'production' ? '/find-local-chess' : '',
-});
+export default defineConfig(({ command }) => ({
+  site: command === 'dev' ? 'http://localhost:4321' : 'https://dtm5011.github.io',
+  base: command === 'dev' ? '' : '/find-local-chess',
+}));

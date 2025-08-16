@@ -13,15 +13,11 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      NODE_ENV: production
     steps:
-      - name: Checkout repository using git
+      - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
         uses: withastro/action@v2
-        with:
-          package-manager: bun@latest
 
   deploy:
     needs: build

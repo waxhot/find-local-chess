@@ -13,6 +13,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production
     steps:
       - name: Checkout repository using git
         uses: actions/checkout@v4

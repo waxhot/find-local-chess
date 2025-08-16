@@ -4,5 +4,5 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://dtm5011.github.io',
-  base: import.meta.env.PROD ? '/find-local-chess' : '',
+  base: process.env.NODE_ENV === 'production' ? '/find-local-chess' : '',
 });

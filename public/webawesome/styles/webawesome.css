@@ -6,9 +6,5 @@
 /* CSS Utilities */
 @import url('utilities.css');
 
-/* Color Palettes and Variants */
-@import url('color/palettes/default.css');
-@import url('color/variants.css');
-
 /* Theme */
-@import url('themes/awesome.css');
+@import url('themes/default.css');

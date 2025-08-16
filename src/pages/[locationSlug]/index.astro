@@ -54,7 +54,7 @@ const sortedDays = Object.keys(eventsByDay).sort(
             {eventsByDay[day].map((event) => (
               <wa-card>
                 <h3 slot="header">
-                  <a href={`/${locationSlug}/events/${event.slug}`}>{event.data.title}</a>
+                  <a href={`/find-local-chess/${locationSlug}/events/${event.slug}`}>{event.data.title}</a>
                 </h3>
                 <div>
                   <p><strong>Time:</strong> {event.data.time}</p>
@@ -73,7 +73,7 @@ const sortedDays = Object.keys(eventsByDay).sort(
         </section>
       ))
     ) : (
-      <p>No events found for {location.data.name}. <a href="/contribute">Add an event!</a></p>
+      <p>No events found for {location.data.name}. <a href="/find-local-chess/contribute">Add an event!</a></p>
     )}
   </div>
 </BaseLayout>

@@ -7,7 +7,6 @@
         "@astrojs/check": "^0.9.4",
         "@awesome.me/webawesome": "^3.0.0-beta.4",
         "astro": "^5.12.2",
-        "webawesome": "^0.0.1",
       },
       "devDependencies": {
         "typescript": "^5.5.4",
@@ -868,8 +867,6 @@
     "vscode-uri": ["vscode-uri@3.1.0", "", {}, "sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ=="],
 
     "web-namespaces": ["web-namespaces@2.0.1", "", {}, "sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ=="],
-
-    "webawesome": ["webawesome@0.0.1", "", {}, "sha512-Gx3iAL+cQSUvbsl1IuYtJx8nnyp51nYJhjl/Y4awkuzGRVWif2lg3nAgfnhCdfpXXB2b9feGS0louCt+E0iikA=="],
 
     "webidl-conversions": ["webidl-conversions@3.0.1", "", {}, "sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ=="],
 

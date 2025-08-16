@@ -22,7 +22,7 @@ const allLocations = await getCollection('locations');
           <ul>
             {allLocations.map((location) => (
               <li>
-                <a href={`/${location.slug}`}>
+                <a href={`/find-local-chess/${location.slug}`}>
                   <h3>{location.data.name}</h3>
                   <p>{location.data.description}</p>
                 </a>
@@ -40,7 +40,7 @@ const allLocations = await getCollection('locations');
             event information through GitHub pull requests.
           </p>
           <p>
-            <a href="/contribute">Learn how to contribute →</a>
+            <a href="/find-local-chess/contribute">Learn how to contribute →</a>
           </p>
         </wa-card>
 
